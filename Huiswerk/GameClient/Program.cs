@@ -13,25 +13,8 @@ namespace GameClient
     {
         static void Main(string[] args)
         {
-            new Thread(ClientThread).Start();
-        }
-
-        private static void ClientThread()
-        {
-            TcpClient client = new TcpClient("145.48.226.96", 1330);
-            bool done = false;
-            Console.WriteLine("Type 'bye' to end connection");
-            while (!done)
-            {
-                Console.Write("Enter a message to send to server: ");
-                string message = Console.ReadLine();
-
-                Communication.WriteTextMessage(client, message);
-
-                string response = Communication.ReadTextMessage(client);
-                Console.WriteLine("Response: " + response);
-                done = response.Equals("BYE");
-            }
+            new Game();
+            new Game();
         }
     }
 }
