@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GameClient
+namespace GameClient2
 {
     class Game
     {
