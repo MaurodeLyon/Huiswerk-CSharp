@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CommunicationLibrary
 {
     public class Communication
-    {
+    {   /*
         //simple writeline and readline
         public static void WriteTextMessage(TcpClient client, string message)
         {
@@ -18,19 +18,20 @@ namespace CommunicationLibrary
             stream.WriteLine(joined);
             stream.Flush();
         }
-        /*
+        */
         public static void WriteTextMessage(TcpClient client, string message)
         {
-            var stream = new StreamWriter(client.GetStream(), Encoding.Unicode);
+            StreamWriter stream = new StreamWriter(client.GetStream(), Encoding.Unicode);
             stream.WriteLine(message);
             stream.Flush();
         }
-        */
+
         public static string ReadTextMessage(TcpClient client)
         {
             StreamReader stream = new StreamReader(client.GetStream(), Encoding.Unicode);
             return stream.ReadLine();
         }
+        /*
         //byte streaming
         public static void SendMessage(TcpClient client, string message)
         {
@@ -45,5 +46,6 @@ namespace CommunicationLibrary
             while (client.GetStream().DataAvailable);
             return Encoding.Unicode.GetString(buffer, 0, totalRead);
         }
+        */
     }
 }

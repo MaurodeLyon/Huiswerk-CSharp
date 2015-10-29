@@ -15,16 +15,29 @@ namespace GameClient2
         {
             new Thread(ClientThread).Start();
         }
-        private static void ClientThread()
+        private TcpClient client;
+        private void ClientThread()
         {
-            TcpClient client = new TcpClient("192.168.3.102", 1330);
-            bool done = false;
-            while (!done)
+            client = new TcpClient("192.168.3.102", 1330);
+            new Thread(responses).Start();
+            new Thread(answers).Start();
+        }
+
+        private void answers()
+        {
+            while (true)
             {
-                string response = Communication.ReadTextMessage(client);//response from server
-                Console.WriteLine(response);                            //write response in console
-                string message = Console.ReadLine();                    //read line from console
-                Communication.WriteTextMessage(client, message);        //send text to server
+                string answer = Console.ReadLine();
+                Communication.WriteTextMessage(client, answer);
+            }
+        }
+
+        private void responses()
+        {
+            while (true)
+            {
+                string response = Communication.ReadTextMessage(client);
+                Console.WriteLine(response);
             }
         }
     }
